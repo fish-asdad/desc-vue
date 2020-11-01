@@ -1,0 +1,39 @@
+<navbar params="{{params}}" />
+
+<view class="view-home">
+  <view class="view-boder">
+    <view class="search">
+      搜索你想要查找的商品
+      <text class="iconfont icon-sousuo2 search-icon"></text>
+      <text class="iconfont .icon-xiaoxi xiaoxi-icon"></text >
+    </view>
+    
+  </view>
+  <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+    <view class="tab-nav">
+      <view class="tab-item  {{currentIndex==index?'active':''}}" wx:for="{{tabNavDatas}}" wx:key="index"
+        data-current="{{index}}" bindtap="changeSwiper">{{item.title}}</view>
+    </view>
+  </scroll-view>
+
+</view>
+<scroll-view>
+  <swiper class="swiper-wrap" autoplay="true" indicator-dots="ture" indicator-color="#ccc" indicator-active-color="#fff">
+    <swiper-item class="swiper-item">
+      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+    </swiper-item>
+    <swiper-item class="swiper-item">
+      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+    </swiper-item>
+    <swiper-item class="swiper-item">
+      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+    </swiper-item>
+  </swiper>
+
+
+  
+   <view>
+    <view>为您推荐</view>
+  </view>
+<list bestListDatas="{{bestListDatas}}"/>
+</scroll-view>

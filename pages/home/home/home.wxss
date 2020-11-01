@@ -1,0 +1,80 @@
+/* pages/swiper-demo/swiper-demo.wxss */
+@import "/assets/fonts/iconfont.wxss";
+
+.view-home {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 80rpx;
+}
+
+.view-boder {
+  width: 100%;
+  height: 80rpx;
+  background-color: red;
+  margin-top: 10rpx;
+
+}
+
+.search {
+  width: 640rpx;
+  height: 58rpx;
+  position: relative;
+  top: 20rpx;
+  line-height: 58rpx;
+  border-radius: 40rpx;
+  background-color: #fff;
+  margin-top: 55rpx;
+  margin-left: 20rpx;
+  text-indent: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+}
+
+.search-icon {
+  position: absolute;
+  right: 20rpx;
+}
+
+.xiaoxi-icon {
+  position: absolute;
+  right: -60rpx;
+  color: #fff;
+}
+
+.tab-nav {
+  width: 1200rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  background-color: red;
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
+.tab-nav .tab-item {
+  float: left;
+  width: 150rpx;
+  text-align: center;
+}
+
+.tab-nav .tab-item.active {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.swiper-wrap {
+  width: 100%;
+  height: 370rpx;
+}
+
+.swiper-wrap .swiper-item {
+  width: 96%;
+
+}
+
+.swiper-wrap image {
+  width: 100%;
+  height: 370rpx;
+}
