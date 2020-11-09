@@ -1,13 +1,13 @@
 // pages/swiper-demo/swiper-demo.js
-const app=getApp()
-let{
+const app = getApp()
+let {
   requestApi
-}=require("../../../utils/request.js")
+} = require("../../../utils/request.js")
 // {}解构赋值。按需引入
-console.log(requestApi);
+// console.log(requestApi); 
 
 Page({
-  
+
   /**
    * 页面的初始数据
    */
@@ -17,7 +17,7 @@ Page({
       showSearch: true,
       showTitle: true,
       bg: 0,
-      title: "正弘城+"
+      title: "大商创"
     },
     tabNavDatas: [{
       id: 1,
@@ -44,13 +44,33 @@ Page({
       id: 8,
       title: "个人化妆"
     }],
+    maioshaDatas: [{
+      id: 1,
+      time: "16:00",
+      title: "抢购中"
+    }, {
+      id: 2,
+      time: "24:00",
+      title: "即将开始"
+    }, {
+      id:3,
+      time:"8:00",
+      title:"即将开始"
+    }, {
+      id:4,
+      time:"10:00",
+      title:"即将开始"
+    }],
     tipHidden: false,
     winH: 0,
     page: 1,
     bestListDatas: [],
+    bestArticleDatas: [],
+    groupgoodsDatas:[],
     currentIndex: 0,
     oLeft: 0,
-    widH:0,
+    left:0,
+    widH: 0,
   },
   closeTip() {
     console.log(123);
@@ -68,35 +88,70 @@ Page({
       "params.bg": bgAlpha
     })
   },
-  getHomeBestList(page){
-    requestApi(app.globalData.base_url+"/goods/type_list",{
-      page:page,
-      size:10,
-      type:"is_best"
-    }).then(res=>{
+  getHomeBestList(page) {
+    requestApi(app.globalData.base_url + "/goods/type_list", {
+      page: page,
+      size: 10,
+      type: "is_best"
+    }).then(res => {
+      console.log(res);
+      console.log(page);
+      this.setData({
+        bestListDatas: this.data.bestListDatas.concat(res.data.data)
+      })
+    })
+    requestApi(app.globalData.base_url + "/visual/visual_seckill", {
+      page: page,
+      size: 10,
+      type: "is_best"
+    }).then(res => {
       console.log(res);
       this.setData({
-        bestListDatas:this.data.bestListDatas.concat(res.data.data)
+        bestArticleDatas: this.data.bestArticleDatas.concat(res.data.data.seckill_list)
+      })
+    })
+    requestApi(app.globalData.base_url + "/visual/visual_team_goods", {
+      page: page,
+      size: 10,
+      type: "is_best"
+    }).then(res => {
+      console.log(res);
+      console.log(page);
+      this.setData({
+        groupgoodsDatas: this.data.groupgoodsDatas.concat(res.data.data)
       })
     })
   },
-  loadMore(){
+  loadMore() {
     console.log(123456);
-     this.setData({
-      page:++this.data.page
-    }) 
+    this.setData({
+      page: ++this.data.page
+    })
     console.log(123456);
     this.getHomeBestList(this.data.page)
-    
   },
-  //横条tab切换
-  changeTab(e) {
+  changeTabe(e) {
     console.log(e.detail.current);
     if (e.detail.current >= 2 && e.detail.current < 6) {
       this.setData({
-        oLeft: (e.detail.current - 2) * 75
+        Left: (e.detail.current - 2) * 75
       })
     }
+    this.setData({
+      currentindex: e.detail.current
+    })
+  },
+  changeswipertwo(e) {
+    console.log(e.currentTarget.dataset.current);
+    this.setData({
+      currentindex: e.currentTarget.dataset.current
+    })
+  },
+
+  //横条tab切换
+  changeTab(e) {
+    console.log(e.detail.current);
+    
     this.setData({
       currentIndex: e.detail.current
     })
@@ -107,13 +162,16 @@ Page({
       currentIndex: e.currentTarget.dataset.current
     })
   },
+  //竖条切换
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     wx.getSystemInfo({
       success: (result) => {
+        console.log(result.windowHeight);
+
         this.setData({
           widH: result.windowHeight
         })
@@ -130,9 +188,13 @@ Page({
       winH: app.globalData.windowHeight
     })
 
-    this. getHomeBestList(this.data.page)
+    this.getHomeBestList(this.data.page)
   },
+  mounted() {
+    console.log(this.$route.params.id);
+    this.initdata(this.$route.params.id);
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

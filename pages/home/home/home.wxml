@@ -1,13 +1,11 @@
-<navbar params="{{params}}" />
-
+<navbar />
 <view class="view-home">
   <view class="view-boder">
     <view class="search">
       搜索你想要查找的商品
       <text class="iconfont icon-sousuo2 search-icon"></text>
-      <text class="iconfont .icon-xiaoxi xiaoxi-icon"></text >
+      <text class="iconfont .icon-xiaoxi xiaoxi-icon"></text>
     </view>
-    
   </view>
   <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
     <view class="tab-nav">
@@ -17,23 +15,184 @@
   </scroll-view>
 
 </view>
-<scroll-view>
-  <swiper class="swiper-wrap" autoplay="true" indicator-dots="ture" indicator-color="#ccc" indicator-active-color="#fff">
-    <swiper-item class="swiper-item">
-      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
-    </swiper-item>
-    <swiper-item class="swiper-item">
-      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
-    </swiper-item>
-    <swiper-item class="swiper-item">
-      <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
-    </swiper-item>
-  </swiper>
+
+<swiper-item>
+  <scroll-view scroll-y="true" bindscrolltolower='loadMore' style="height:{{widH}}px">
+    <swiper class="swiper-wrap" autoplay="true" indicator-dots="ture" indicator-color="#ccc"
+      indicator-active-color="#fff">
+      <swiper-item class="swiper-item">
+        <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+      </swiper-item>
+    </swiper>
 
 
-  
-   <view>
-    <view>为您推荐</view>
-  </view>
-<list bestListDatas="{{bestListDatas}}"/>
-</scroll-view>
+    <swiper class="swiper-wrape" indicator-dots="ture" indicator-color="#ccc" indicator-active-color="#f00">
+
+      <swiper-item class="swiper-item">
+        <view class="tab-goods-Item">
+          <view class="tab-goods-item" wx:for="{{bestListDatas}}" wx:for-item="bestList" wx:key="index">
+            <image src="{{bestList.goods_thumb}}"></image>
+            <view class="will-title">{{bestList.title}}</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="tab-goods-Item">
+          <view class="tab-goods-item">
+            <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+            <view class="will-title">小程序专区</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item class="swiper-item">
+        <view class="tab-goods-Item">
+          <view class="tab-goods-item">
+            <image src="https://www.zhcommerce.com/upload/2020/01/20/15795012742865q3r0k.png"></image>
+            <view class="will-title">小程序专区</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+
+    <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+      <view class="tab-item  {{currentIndex==index?'active':''}}" wx:for="{{}}" wx:key="index" data-current="{{index}}"
+        bindtap="changeSwiper">{{item.title}}</view>
+    </scroll-view>
+
+    <view class="home-hotgoods">
+      <image src="https://x.dscmall.cn/storage/data/gallery_album/177/original_img/177_P_1597978466633.png"></image>
+      <view class="hot-active">
+
+        <swiper class="swiperhot" autoplay="true" vertical="true" autoplay="true">
+          <swiper-item class="swiper-itemsell">
+            我们成为中国最大家电零售B2B2C系统
+          </swiper-item>
+          <swiper-item class="swiper-itemsell">
+            三大国际腕表品牌签约
+          </swiper-item>
+          <swiper-item class="swiper-itemsell">
+            服务店铺突破三百多家
+          </swiper-item>
+        </swiper>
+
+      </view>
+    </view>
+
+    <image class="home-hotgoods-image"
+      src="https://x.dscmall.cn/storage/data/gallery_album/original_img/CPvH5WHHbF0EoG9XjRQbbT3knMVCeEt9DlYGQhJM.png?imageView2/2/format/webp">
+    </image>
+
+    <view class="home-maiosha">
+      <image
+        src="https://x.dscmall.cn/storage/data/gallery_album/177/original_img/177_P_1597978468241.png?imageView2/2/format/webp">
+      </image>
+      <view class="home-miaoshatime">
+        距离结束还有<span>00</span><i>:</i><span>00</span><i>:</i><span>00</span>
+      </view>
+
+    </view>
+    <view class="home-miaoshagoods">
+      <view class="home-miaoshagoodstime {{currentindex==index?'actable':''}}" wx:for="{{ maioshaDatas}}" wx:key="index"
+        data-current="{{index}}" bindtap="changeswipertwo">
+        <view>{{item.time}}</view>
+        <view> {{item.title}}</view>
+      </view>
+      <swiper class="home-miaoshagoodstime-slot" bindchange="changeTabe" current="{{currentindex}}">
+        <swiper-item class="slot-item" bindchange="changeTabe">
+          <view class="home-miaoshalist">
+            <scroll-view scroll-x="true" scroll-left="{{Left}}" scroll-with-animation="true">
+              <view class="home-miaoshalist-tab-nav">
+                <view class="home-miaoshalist-tab-item">
+                  <view class="home-miaoshalist-tab-items" wx:for="{{bestArticleDatas}}" wx:for-item="bestArtic"
+                    wx:key="index">
+                    <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{bestArtic.goods_id}}">
+                      <image src="{{bestArtic.goods_thumb}}"></image>
+                      <view class="p-title">{{bestArtic.goods_name}}</view>
+                      <view class="p-price">{{bestArtic.sec_price}}</view>
+                      </navigator>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item class="slot-item">
+          <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+            <view class="home-miaoshalist-tab-nav">
+              <view class="home-miaoshalist-tab-item">
+                <view class="home-miaoshalist-tab-items" wx:for="{{bestArticleDatas}}" wx:for-item="bestArtic"
+                  wx:key="index">
+                  <image src="{{bestArtic.goods_thumb}}"></image>
+                  <view class="p-title">{{bestArtic.goods_name}}</view>
+                  <view class="p-price">{{bestArtic.sec_price}}</view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item class="slot-item">
+          <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+            <view class="home-miaoshalist-tab-nav">
+              <view class="home-miaoshalist-tab-item">
+                <view class="home-miaoshalist-tab-items" wx:for="{{bestArticleDatas}}" wx:for-item="bestArtic"
+                  wx:key="index">
+                  <image src="{{bestArtic.goods_thumb}}"></image>
+                  <view class="p-title">{{bestArtic.goods_name}}</view>
+                  <view class="p-price">{{bestArtic.sec_price}}</view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item class="slot-item">
+          <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+            <view class="home-miaoshalist-tab-nav">
+              <view class="home-miaoshalist-tab-item">
+                <view class="home-miaoshalist-tab-items" wx:for="{{bestArticleDatas}}" wx:for-item="bestArtic"
+                  wx:key="index">
+                  <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{groupgoods.goods_id}}">
+                    <image src="{{bestArtic.goods_thumb}}"></image>
+                    <view class="p-title">{{bestArtic.goods_name}}</view>
+                    <view class="p-price">{{bestArtic.sec_price}}</view>
+                  </navigator>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="hmoe-groupbuy">
+      <view class="hmoe-groupbuy-title">
+        <view class="p-left">拼团专区</view>
+        <view class="p-right">拼着买更实惠</view>
+      </view>
+      <view class="hmoe-groupbuy-content">
+        <scroll-view scroll-x="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
+          <view class="hmoe-groupbuy-item">
+            <view class="home-groupbuy-goods" wx:for="{{groupgoodsDatas}}" wx:for-item="groupgoods" wx:key="index">
+              <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{groupgoods.goods_id}}">
+                <image src="{{groupgoods.goods_thumb}}"></image>
+                <view class="p-goods">{{groupgoods.goods_name}}</view>
+              </navigator>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view>
+      <view class="select">精选</view>
+      <view class="component">为您推荐</view>
+    </view>
+    <navigator url="/pages/goodsdetail/goodsdetail" class="item">
+      <list bestListDatas="{{bestListDatas}}" />
+    </navigator>
+  </scroll-view>
+</swiper-item>

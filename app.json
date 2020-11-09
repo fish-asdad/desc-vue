@@ -5,8 +5,10 @@
     "pages/fond/fond",
     "pages/cart/cart",
     "pages/mine/mine",
+    "pages/goodsdetail/goodsdetail",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/goodslist/goodslist"
   ],
   "window": {
     "backgroundTextStyle": "light",

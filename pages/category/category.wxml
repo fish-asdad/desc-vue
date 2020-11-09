@@ -1,15 +1,48 @@
-<view class="view-boder">
-  <view class="view-input">
-    <input type="text" placeholder="输入的搜索关键字" />
+<!-- <navbar params="{{params}}" /> -->
+<navbar />
+<view class="category-page" style="top:{{navH}}rpx">
+  <view class="search-header">
+    <view class="search">
+      <text class="iconfont icon-sousuo2"></text>
+      <input type="text" placeholder="请输入关键字" placeholder-class="placeholder" />
+    </view>
   </view>
-</view>
-<scroll-view scroll-y="true" scroll-left="{{oLeft}}" scroll-with-animation="true">
-  <view class="tab-nav">
-    <view class="tab-item  {{currentIndex==index?'active':''}}" wx:for="{{tabNavDatas}}" wx:key="index"
-      data-current="{{index}}" bindtap="changeSwiper">{{item.title}}</view>
+  <!-- 左边 -->
+  <view class="category-left" style="top:{{navH}}rpx; margin-top:200rpx">
+    <block wx:for="{{getCategoryNavList}}" wx:key="index">
+      <view class="category-nav {{index==activeIndex?'active':''}}" data-id="a{{index}}" data-index="{{index}} "bindtap="changeNav">
+        <text>{{item.cat_name}}</text>
+      </view>
+    </block>
   </view>
-</scroll-view>
-<view class="swiper-ground"></view>
-<swiper bindchange="changeTab" current="{{currentIndex}}" style="height:{{widH}}px;background:#ccc">
 
-</swiper>
+  <!-- 右边 -->
+  <view class="category-right" style="top:{{navH}}rpx; margin-top:200rpx">
+    <scroll-view scroll-y="true" style="height:{{height}}rpx" scroll-with-animation="true" scroll-into-view="{{goId}}">
+      <block wx:for="{{getCategoryContent}}" wx:key="index">
+        <view id="a{{index}}">
+          <block wx:for="{{item}}" wx:key="index">
+            <view class="list-wrap">
+            <view class="list-title">
+              <view class="line"></view>
+              <view class="name">{{item.cat_name}}</view>
+              <view class="line"></view>
+            </view>
+            <view class="list-content">
+             <block wx:for="{{item.child}}" wx:key="index">
+              <navigator url="/pages/goodslist/goodslist?cat_id={{item.cat_id}}" class="item">
+                <view class="pic">
+                  <image src="{{item.touch_icon}}"></image>
+                </view>
+                <view class="name">{{item.cat_name}}</view>
+              </navigator>
+             </block>
+            </view>
+          </view>
+          </block>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+</view>

@@ -1,0 +1,129 @@
+<!-- 头部导航条 -->
+<import src="/wxParse/wxParse.wxml"></import>
+<view class="detail-navbar" style="height:{{navH}}rpx; background:rgba(255,255,255,{{opacity}}); ">
+  <view class="navbar-wrap">
+    <view class="navbar-btn">
+      <text class="iconfont icon-jiantou3" bindtap="goBackFn"></text>
+      <text class="iconfont icon-shouye"></text>
+    </view>
+    <view class="navbar-header" style="opacity:{{opacity}}">
+      <view class="navbar-item {{activeIndex==index?'active':''}}" bindtap="tapNavFn" data-id="detail{{index}}"
+        data-index="{{index}}" wx:for="{{titleArr}}" wx:key="index">{{item}}</view>
+    </view>
+  </view>
+</view>
+<!-- 详情页内容 -->
+<view class="detail-content" style="margin-top:{{navH}}rpx">
+  <scroll-view scroll-y="true" bindscroll="scrollFn" scroll-with-animation="true"
+    style="height:{{height}}px;background:#ccc" scroll-into-view="{{goId}}">
+    <!-- 商品 -->
+    <view id="detail0">
+      <swiper class="detail-swiper">
+        <swiper-item class="detail-swiper-item">
+          <image src="{{goodsDetailData.goods_img}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="detail-container">
+        <view class="detail-price">
+          <text class="price">{{goodsDetailData.shop_price}}</text>
+          <text class="dprice">{{goodsDetailData.shop_price-1+101}}</text>
+        </view>
+        <view class="detail-title">
+          <view>{{goodsDetailData.goods_name}}</view>
+        </view>
+
+
+      </view>
+      <br />
+      <view class="select-title" bindtap="showMaskFn">
+        <view class="detail-container" style="display:flex;justify-content: space-between;">
+          <view>
+            <text>已选:</text>
+            <text>8</text>
+          </view>
+          <view class="iconfont icon-jiantou2"></view>
+        </view>
+      </view>
+      <br />
+
+
+    </view>
+    <view id="detail1">
+      <view>商品详情</view>
+
+      <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+
+    </view>
+    <view id="detail2">
+      <view>商品推荐</view>
+      <listtj bestListDatas="{{goodsDetailTJData}}" />
+    </view>
+    <view id="detail3">
+      <view>商品评论</view>
+      <view wx:for="{{goodsPJData}}" wx:key="index">
+        <image src="{{item.user_picture}}"></image>
+        <view>{{item.content}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
+
+
+<!-- 弹窗蒙版 -->
+<view class="mask" wx:if="{{showMask}}" bindtap="closeMaskFn"></view>
+<view class="screen-wrap" wx:if="{{showMask}}" animation="{{animationData}}">
+  <view class="close" bindtap="closeMaskFn">
+    <text class="iconfont icon-chahao"></text>
+  </view>
+  <view class="screen-content">
+    <view class="screen-goods">
+      <view class="goods-img">
+        <image src="{{goodsDetailData.goods_img}}"></image>
+      </view>
+      <view class="goods-title">
+        <view class="title">{{goodsDetailData.goods_name}}</view>
+        <view class="price">{{goodsDetailData.shop_price}}</view>
+      </view>
+    </view>
+    <view class="buy-warp">
+      <view class="buy-num">数量</view>
+      <view class="buy-add">
+        <text bindtap="changeNum" data-num="0">-</text>
+        <view>{{buyNum}}</view>
+        <text bindtap="changeNum" data-num="1">+</text>
+      </view>
+    </view>
+    <view class="buy">
+      <view class="buy-btn">立即购买</view>
+      <view class="buy-cart" bindtap="addCartOk">确定</view>
+    </view>
+
+
+  </view>
+</view>
+
+
+<!-- 底部导航 -->
+<view class="footer-container">
+  <view class="footer-item">
+    <button class="kf" session-from="{{goodsDetailData.goods_id}}" open-type="contact"></button>
+    <view class="iconfont icon-kefu"></view>
+    <text>客服</text>
+  </view>
+  <view class="footer-item">
+    <view class="iconfont icon-shoucang"></view>
+    <text>收藏</text>
+  </view>
+  <view class="footer-item">
+    <view class="iconfont icon-gouwuche"></view>
+    <text>购物车</text>
+    <view class="buyNun">103</view>
+  </view>
+  <view class="footer-item addcart"  bindtap="showMaskFn">
+    <text>加入购物车</text>
+  </view>
+  <view class="footer-item buy">
+    <text>立即购买</text>
+  </view>
+</view>

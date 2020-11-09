@@ -32,9 +32,19 @@ App({
         }
       }
     })
-  },
+  
+  // 获取系统信息
+  wx.getSystemInfo({
+    success: (result) => {
+      this.globalData.windowHeight=result.windowHeight
+      this.globalData.anvbarHeight=result.statusBarHeight*(750/result.windowWidth)+88
+    },
+  })
+},
   globalData: {
     userInfo: null,
+    windowHeight:0,
+    navbarHeight:0,
     base_url:"https://x.dscmall.cn/api"
   }
 })

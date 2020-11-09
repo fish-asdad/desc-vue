@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "br":"/components/br/br",
+    "listtj":"/components/list/list"
+  },
+  "navigationStyle":"custom",
+  "navigationBarTextStyle":"black"
+}

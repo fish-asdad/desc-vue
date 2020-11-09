@@ -1,2 +1,9 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<anvabr />
+<view style="margin-top:200px">
+  <button bindtap="toLogin">请登录</button>
+</view>
+
+<view class="mask" hidden="{{showMask}}">
+  <button style="margin-top:200px" open-type="getUserInfo" bindgetuserinfo="getUserInfoFn">请授权</button>
+</view>

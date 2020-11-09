@@ -1,0 +1,31 @@
+/* pages/goodslist/goodslist.wxss */
+.goodslist-item {
+  width: 100%;
+
+}
+
+.goodslist-goods {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.goodslist-items {
+  width: 48%;
+  margin-top: 2rpx;
+  display: -webkit-box;
+  font-size: 25rpx;
+  line-height: 40rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 2rpx;
+}
+
+
+.goodslist-goods image {
+  width: 100%;
+  height: 300rpx;
+}

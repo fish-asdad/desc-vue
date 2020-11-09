@@ -1,0 +1,11 @@
+
+<view class="goodslist-item">
+  <view class="goodslist-goods">
+    <block wx:for="{{goodsListDatas}}" wx:key="index">
+      <navigator class="goodslist-items" url="/pages/goodsdetail/goodsdetail?goods_id={{item.goods_id}}">
+        <image src="{{item.goods_img}}"></image>
+        <view>{{item.goods_name}}</view>
+      </navigator>
+    </block>
+  </view>
+</view>

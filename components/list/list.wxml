@@ -1,9 +1,10 @@
 <view class="list-container">
   <view class="list-wrap">
     <view class="list-item" wx:for="{{bestListDatas}}" wx:for-item="bestList" wx:key="index">
-      <image src="{{bestList.goods_thumb}}"></image>
-      <view>{{bestList.title}}</view>
+      <navigator url="/pages/goodsdetail/goodsdetail?goods_id={{bestList.goods_id}}">
+        <image src="{{bestList.goods_thumb}}"></image>
+        <view>{{bestList.title}}</view>
+        </navigator>
     </view>
-    
-    </view>
+  </view>
 </view>

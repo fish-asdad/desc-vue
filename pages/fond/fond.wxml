@@ -1,2 +1,1 @@
-<!--pages/fond/fond.wxml-->
-<text>pages/fond/fond.wxml</text>
+<navbar />
